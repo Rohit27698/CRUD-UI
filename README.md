@@ -22,5 +22,13 @@ A simple Todo App to help you organize your tasks and stay productive.
   
 ### Screenshots
 
-![Todo App Screenshot 1](images/screenshot1.png)
-![Todo App Screenshot 2](images/screenshot2.png)
+![Todo App Screenshot 1](./image/1.png)
+![Todo App Screenshot 2](./image/2.png)
+![Todo App Screenshot 3](./image/3.png)
+![Todo App Screenshot 4](./image/4.png)
+![Todo App Screenshot 5](./image/5.png)
+![Todo App Screenshot 6](./image/6.png)
+![Todo App Screenshot 7](./image/7.png)
+![Todo App Screenshot 8](./image/8.png)
+
+
