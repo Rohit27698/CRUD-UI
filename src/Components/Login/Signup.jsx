@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [authenticate, setAuthenticate] = useState([]);
 
   const [newUserData, setNewUserData] = useState({
     name: '',
@@ -15,43 +14,43 @@ export default function Signup() {
     password: '',
   });
 
+  useEffect(() => {
+    const allUsers = async () => {
+      try {
+        const res = await fetch(`http://localhost:30001/check`);
+        const res1 = await res.json();
+        setAuthenticate(res1.user);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    allUsers();
+  }, []);
+
   const handleSignup = async (e) => {
     e.preventDefault();
+    const matchedUser = authenticate.find((user) => user.email === newUserData.email);
 
-    if (
+    if (matchedUser) {
+      alert('User Already Exists');
+    } else if (
       newUserData.name.length !== 0 &&
       newUserData.email.length !== 0 &&
       newUserData.phone.length !== 0 &&
-      newUserData.password.length !== 0
+      newUserData.password.length !== 0 &&
+      !matchedUser
     ) {
       try {
-        await postData();
-        toast.success("Account created. We've created your account for you.", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 5000,
-        });
+        await axios.post(`http://localhost:30001/signup`, newUserData);
+        alert("Account created. We've created your account for you.");
         navigate('/login');
       } catch (error) {
         console.log(error);
       }
     } else {
-      toast.error('Please enter all fields', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 2000,
-      });
+      alert('Please enter all fields');
     }
   };
-
-  async function postData() {
-    try {
-      await axios.post(
-        `https://long-ruby-kingfisher-kilt.cyclic.cloud//posts`,
-        newUserData
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-purple-900">
