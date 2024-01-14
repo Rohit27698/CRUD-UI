@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContextProvider';
 
 const Login = () => {
+  const{setUser,setIsLogged}=useContext(AuthContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,6 +30,10 @@ const Login = () => {
         if (data.token) {
           alert(data.message);
           localStorage.setItem('token',(data.token))
+          localStorage.setItem('user',(data.user.name))
+          localStorage.setItem('isLogin',(true))
+          setUser(data.user.name)
+          setIsLogged(true)
           navigate('/')
         } else {
           setError('Invalid email or password');

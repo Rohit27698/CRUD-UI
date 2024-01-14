@@ -44,7 +44,7 @@ const AddTodo = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-purple-900" >
+    <div className="min-h-screen p-20 justify-center bg-purple-900" >
       <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Add Todo</h2>
         <div className="mb-4">

@@ -1,12 +1,16 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState, } from 'react';
+import { Link ,useNavigate} from 'react-router-dom';
+import { AuthContext } from '../context/AuthContextProvider';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isLogged = false;
-  const logUser = false;
-  const logout = false;
+  const {user,isLogged,logout,}=useContext(AuthContext)
+const nav=useNavigate()
+  const handleLogout=()=>{
+    logout()
+    nav('/login')
 
+  }
   return (
     <div>
       <header className="bg-purple-900 text-white py-2 px-4 border-b border-gray-200 flex items-center">
@@ -41,9 +45,9 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="flex items-center space-x-4">
-              <span className="text-lg font-bold">{logUser}</span>
+              <span className="text-lg font-bold">{user}</span>
               <button
-                onClick={logout}
+                onClick={handleLogout}
                 className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-300"
               >
                 Sign Out

@@ -42,7 +42,7 @@ const Todos = () => {
   };
 
   const handleCompleted = async(_id,status) => {
-    if(status==false){
+    if(status===false){
       try {
         const token = localStorage.getItem("token")
         await fetch(`http://localhost:30001/todos/${_id}`, {
@@ -93,6 +93,7 @@ const Todos = () => {
           description={todo.description}
           onDelete={handleDelete}
           onCompleted={handleCompleted}
+          todo={todo}
         />
       ))}
       </div>
