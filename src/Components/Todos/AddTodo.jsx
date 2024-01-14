@@ -20,7 +20,7 @@ const AddTodo = () => {
     try {
       const token = localStorage.getItem("token")
       // console.log(formData)
-      await fetch('http://localhost:30001/todos', {
+      await fetch('https://puce-ant-tutu.cyclic.app/todos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const AddTodo = () => {
         description: '',
       });
 
-      nav("/")
+      nav("/todo")
     } catch (error) {
       console.error('Error adding todo', error.message);
     }
@@ -45,7 +45,7 @@ const AddTodo = () => {
 
   return (
     <div className="min-h-screen p-20 justify-center bg-purple-900" >
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 rounded-md shadow-md">
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-neutral-200 p-8 rounded-md shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Add Todo</h2>
         <div className="mb-4">
           <label htmlFor="title" className="block text-gray-700 text-sm font-medium mb-2">

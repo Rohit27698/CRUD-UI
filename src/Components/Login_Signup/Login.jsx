@@ -17,7 +17,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:30001/login', {
+      const response = await fetch('https://puce-ant-tutu.cyclic.app/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-purple-900">
-      <div className="max-w-md bg-white p-8 rounded-lg shadow-lg">
+      <div className="max-w-md bg-neutral-200 p-8 rounded-lg shadow-lg">
         <h1 className="text-4xl text-center mb-8 text-purple-900">
           Sign in to your Account
         </h1>

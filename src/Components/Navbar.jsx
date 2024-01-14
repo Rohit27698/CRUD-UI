@@ -8,7 +8,7 @@ export default function Navbar() {
 const nav=useNavigate()
   const handleLogout=()=>{
     logout()
-    nav('/login')
+    nav('/')
 
   }
   return (
@@ -37,7 +37,7 @@ const nav=useNavigate()
           {!isLogged ? (
             <div className="space-x-4">
               <Link to="/login" className="text-white">
-                Sign In
+                Login
               </Link>
               <Link to="/signup" className="text-white">
                 Sign Up
@@ -62,7 +62,7 @@ const nav=useNavigate()
 
 const DesktopNav = () => {
   const NAV_ITEMS = [
-    { label: 'Home', href: '/' },
+    { label: 'Tasks', href: '/todo' },
     { label: 'Add Task', href: '/addtask' }
   ];
 
@@ -76,29 +76,59 @@ const DesktopNav = () => {
         >
           {navItem.label}
         </Link>
-      ))}
+      ))
+      }
     </>
   );
 };
 
-const MobileNav = ({ setIsMenuOpen }) => {
+export const MobileNav = ({ setIsMenuOpen }) => {
+  const { user, isLogged, logout } = useContext(AuthContext);
+  const nav = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    nav('/');
+  };
+
   const NAV_ITEMS = [
-    { label: 'Home', href: '/' },
+    { label: 'Tasks', href: '/todo' },
     { label: 'Add Task', href: '/addtask' }
   ];
 
   return (
     <div className="flex flex-col space-y-2">
+      {!isLogged ? (
+        <div className="flex flex-col space-y-2" >
+          <Link to="/login" className="text-white px-4 py-2">
+            Login
+          </Link>
+          <Link to="/signup" className="text-white px-4 py-2">
+            Sign Up
+          </Link>
+        </div>
+      ) : (
+        <div className="flex flex-col space-y-2">
+          <span className="text-lg font-bold">{user}</span>
+          <button
+            onClick={handleLogout}
+            className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-300"
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
       {NAV_ITEMS.map((navItem) => (
         <Link
           key={navItem.label}
           to={navItem.href}
-          className="text-white hover:text-gray-800"
+          className="text-white hover:text-gray-800 px-4 py-2"
           onClick={() => setIsMenuOpen(false)}
         >
           {navItem.label}
         </Link>
       ))}
+      
     </div>
   );
 };

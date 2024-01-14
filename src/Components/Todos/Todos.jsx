@@ -5,7 +5,7 @@ const Todos = () => {
   const [tasks, setTask] = useState([])
     const fetchData=async()=>{
       const token = localStorage.getItem("token")
-      await fetch("http://localhost:30001/todos", {
+      await fetch("https://puce-ant-tutu.cyclic.app/todos", {
           method : "GET",
           headers : {
               "content-type" : "application/json",
@@ -23,7 +23,7 @@ const Todos = () => {
   const handleDelete = async(_id) => {
     try {
       const token = localStorage.getItem("token")
-      await fetch(`http://localhost:30001/todos/${_id}`, {
+      await fetch(`https://puce-ant-tutu.cyclic.app/todos/${_id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const Todos = () => {
     if(status===false){
       try {
         const token = localStorage.getItem("token")
-        await fetch(`http://localhost:30001/todos/${_id}`, {
+        await fetch(`https://puce-ant-tutu.cyclic.app/todos/${_id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const Todos = () => {
     }else{
       try {
         const token = localStorage.getItem("token")
-        await fetch(`http://localhost:30001/todos/${_id}`, {
+        await fetch(`https://puce-ant-tutu.cyclic.app/todos/${_id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',

@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../context/AuthContextProvider'
+import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 
 export const PrivatRoute = () => {
-  const {isLogged,}=useContext(AuthContext)
-  if (isLogged) {
+  const isLogin = localStorage.getItem("isLogin")
+  if (isLogin) {
     return (<div><Outlet /></div>)
   } else {
     return <Navigate to="/login" />

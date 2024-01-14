@@ -23,7 +23,7 @@ const EditTodo = () => {
   const handleUpdateTodo = async () => {
     try {
       const token = localStorage.getItem("token")
-      await fetch(`http://localhost:30001/todos/${todo._id}`, {
+      await fetch(`https://puce-ant-tutu.cyclic.app/todos/${todo._id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const EditTodo = () => {
         body: JSON.stringify({status:todo.status,title:todo.title,description:todo.description}),
 
       });
-      nav('/')
+      nav('/todo')
 
     } catch (error) {
       console.error('Error Updating todo', error.message);
@@ -42,7 +42,7 @@ const EditTodo = () => {
 
   return (
     <div className="min-h-screen  justify-center bg-purple-900 p-20">
-         <div className="max-w-md mx-auto mt-auto p-6 bg-white rounded-md shadow-md">
+         <div className="max-w-md mx-auto mt-auto p-6 bg-neutral-200 rounded-md shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Edit Todo</h2>
       <form>
         <div className="mb-4">

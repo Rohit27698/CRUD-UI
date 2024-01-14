@@ -11,7 +11,7 @@ const TodoCard = ({ _id, title, description, onDelete, onCompleted, status, todo
     nav('/edit')
   }
   return (
-    <div className="bg-white p-4 rounded-md shadow-md mb-4 mt-4" >
+    <div className="bg-neutral-200 p-4 rounded-md shadow-md mb-4 mt-4" >
       <div onClick={handleEdit}>
         <h3 className="text-lg font-semibold mb-2">{title}</h3>
         <p className="text-gray-700 mb-4">{description}</p>

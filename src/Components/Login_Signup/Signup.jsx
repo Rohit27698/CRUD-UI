@@ -17,7 +17,7 @@ export default function Signup() {
   useEffect(() => {
     const allUsers = async () => {
       try {
-        const res = await fetch(`http://localhost:30001/check`);
+        const res = await fetch(`https://puce-ant-tutu.cyclic.app/check`);
         const res1 = await res.json();
         setAuthenticate(res1.user);
       } catch (error) {
@@ -41,7 +41,7 @@ export default function Signup() {
       !matchedUser
     ) {
       try {
-        await axios.post(`http://localhost:30001/signup`, newUserData);
+        await axios.post(`https://puce-ant-tutu.cyclic.app/signup`, newUserData);
         alert("Account created. We've created your account for you.");
         navigate('/login');
       } catch (error) {
