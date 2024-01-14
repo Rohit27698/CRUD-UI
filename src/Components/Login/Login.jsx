@@ -1,24 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const Navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [getData, setGetData] = useState([]);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError('Please enter both email and password');
+      return;
+    }
 
+    try {
+      const response = await fetch('http://localhost:30001/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
+      if (response.ok) {
+        const data = await response.json();
+        if (data.token) {
+          alert(data.message);
+          localStorage.setItem('token', JSON.stringify(data.token))
+        } else {
+          setError('Invalid email or password');
+        }
+      } else {
+        setError('Error during login. Please try again.');
+      }
+    } catch (error) {
+      setError('Error during login. Please try again.');
+    }
+  };
 
-const handleLogin=()=>{
-
-}
-
-
-    return (
+  return (
     <div className="min-h-screen flex items-center justify-center bg-purple-900">
       <div className="max-w-md bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-4xl text-center mb-8 text-purple-900">Sign in to your Account</h1>
+        <h1 className="text-4xl text-center mb-8 text-purple-900">
+          Sign in to your Account
+        </h1>
         <form className="space-y-4">
           <div>
             <label className="block text-gray-700">Email address</label>
@@ -39,6 +65,7 @@ const handleLogin=()=>{
             />
           </div>
           <div className="space-y-4">
+            {error && <p className="text-red-500">{error}</p>}
             <div className="flex items-center">
               <input type="checkbox" className="mr-2" />
               <span className="text-gray-700">Remember me</span>
@@ -52,11 +79,16 @@ const handleLogin=()=>{
           </div>
         </form>
         <div className="pt-6 text-center">
-          <p className="text-gray-700">New User? <Link className="text-blue-400" to={'/signup'}>Register</Link></p>
+          <p className="text-gray-700">
+            New User?{' '}
+            <Link className="text-blue-400" to={'/signup'}>
+              Register
+            </Link>
+          </p>
         </div>
       </div>
     </div>
-    )
-}
+  );
+};
 
-export default Login
+export default Login;
