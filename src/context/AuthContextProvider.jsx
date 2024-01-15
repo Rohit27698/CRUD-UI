@@ -9,6 +9,7 @@ export const AuthContextProvider = ({children}) => {
     setIsLogged(false);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('userData');
     localStorage.removeItem('isLogin');
     setUser('')
 

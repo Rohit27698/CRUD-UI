@@ -11,6 +11,9 @@ const nav=useNavigate()
     nav('/')
 
   }
+  const navUser=()=>{
+    nav('/user')
+  }
   return (
     <div>
       <header className="bg-purple-900 text-white py-2 px-4 border-b border-gray-200 flex items-center">
@@ -45,7 +48,7 @@ const nav=useNavigate()
             </div>
           ) : (
             <div className="flex items-center space-x-4">
-              <span className="text-lg font-bold">{user}</span>
+              <Link to="/user" className="text-lg font-bold" >{user}</Link>
               <button
                 onClick={handleLogout}
                 className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-300"
@@ -109,7 +112,7 @@ export const MobileNav = ({ setIsMenuOpen }) => {
         </div>
       ) : (
         <div className="flex flex-col space-y-2">
-          <span className="text-lg font-bold">{user}</span>
+          <Link to="/user" className="text-lg font-bold" >{user}</Link>
           <button
             onClick={handleLogout}
             className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-300"

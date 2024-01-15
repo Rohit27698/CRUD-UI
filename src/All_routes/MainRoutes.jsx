@@ -7,6 +7,7 @@ import { PrivatRoute } from './PrivatRoute'
 import Login from '../Components/Login_Signup/Login'
 import Signup from '../Components/Login_Signup/Signup'
 import Dashbord from '../Components/Dashbord'
+import User from '../Components/Login_Signup/User'
 
 const MainRoutes = () => {
     return (
@@ -19,6 +20,7 @@ const MainRoutes = () => {
                 <Route path="/todo" exact element={<Todos />} />
                 <Route path='/addtask' exact element={<AddTodo />} />
                 <Route path='/edit' exact element={<EditTodo />} />
+                <Route path='/user' exact element={<User/>}/>
             </Route>
         </Routes>
 

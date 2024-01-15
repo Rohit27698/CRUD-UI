@@ -31,6 +31,7 @@ const Login = () => {
           alert(data.message);
           localStorage.setItem('token',(data.token))
           localStorage.setItem('user',(data.user.name))
+          localStorage.setItem('userData',(data.user._id))
           localStorage.setItem('isLogin',(true))
           setUser(data.user.name)
           setIsLogged(true)
